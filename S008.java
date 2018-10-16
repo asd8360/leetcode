@@ -42,7 +42,6 @@ public class S008 {
 			i++;
 		}
 		if(i>=str.length() || !Character.isDigit(str.charAt(i))) return 0;
-		if(!Character.isDigit(str.charAt(i))) return 0;
 		for(;i<str.length() && Character.isDigit(str.charAt(i)); i++){
 			if(ans>Integer.MAX_VALUE/10){
 				if(signal==1) return Integer.MAX_VALUE;

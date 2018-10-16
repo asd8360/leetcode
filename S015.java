@@ -20,7 +20,8 @@ public class S015 {
         Arrays.sort(nums);
         int max = nums[nums.length-1];
         if(max<0) return list;
-        for(int i=0; i<nums.length-2;) {
+        for(int i=0; i<nums.length-2;) {//不要自增 最后检查重复会自增
+            
         	if(nums[i] >0) return list;
         	if(nums[i] + 2 * nums[nums.length-1] < 0) { // 这个数没戏,去掉相同数，找更大的为起点
         		while(nums[i] == nums[++i] && i<nums.length-2);

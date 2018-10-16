@@ -10,14 +10,16 @@ public class S018 {
         List<List<Integer>> list = new ArrayList<>();
         Arrays.sort(nums);
         
-        for(int i=0; i<nums.length-3;){
+        for(int i=0; i<nums.length-3;){ //不要自增 最后检查重复会自增
+
         	if(nums[i] * 4 > target) return list;
         	if(nums[i] + 3*nums[nums.length-1] < target){
         		while(nums[i] == nums[++i] && i<nums.length-3);
         		continue;
         	}
 
-        	inner:for(int j=i+1; j<nums.length-2;){
+        	inner:for(int j=i+1; j<nums.length-2;){//不要自增 最后检查重复会自增
+        		
         		if(nums[j]*3 +nums[i] > target) break inner;
 	        	if(nums[i] +nums[j] + 2*nums[nums.length-1] < target){
 	        		while(nums[j] == nums[++j] && j<nums.length-2);
