@@ -2,10 +2,22 @@ package leetcode;
 
 public class S010 {
 	public static void main(String[] args) {
+		System.out.println(isMatch("aa", "a"));
+		System.out.println(isMatch("aa", "a*"));
+		System.out.println(isMatch("ab", ".*"));
+		System.out.println(isMatch("aab", "c*a*b"));
+		System.out.println(isMatch("mississippi", "mis*is*p*."));
 		
 	}
-	public boolean isMatch(String s, String p) {
-        
+	public static boolean isMatch(String s, String p) {
+        if(p.length() == 0) return s.length()==0;
+        if(p.length() == 1) return s.length()==1 && (p.charAt(0) == '.' ||s.charAt(0)==p.charAt(0));
+        if(p.charAt(1) == '*'){
+        	if(isMatch(s, p.substring(2))) return true;
+        	else return s.length() >0 && (p.charAt(0) == '.' || s.charAt(0)==p.charAt(0) )&& isMatch(s.substring(1), p);
+        }else{
+        	return s.length() >0 && (p.charAt(0)=='.' || s.charAt(0) == p.charAt(0)) && isMatch(s.substring(1), p.substring(1));
+        }
     }
 }
 

@@ -2,37 +2,66 @@ package leetcode;
 
 
 public class S008 {
+//	public static int myAtoi(String str) {
+//		if(str.length()==0) return 0;
+//        int len= str.length();
+//        int i=0;
+//        int ans=0, signal=1;
+//        while(i<len&&str.charAt(i)==' ') ++i;
+//        if(i>=len) return 0;
+//        if(str.charAt(i) == '-' ||str.charAt(i)== '+') {
+//            if(str.charAt(i) == '-'){
+//                signal=-1;
+//                i++;
+//            }else i++;
+//        }
+//        if(i>=len || !Character.isDigit(str.charAt(i))) return 0;
+//        for(; i<str.length() && Character.isDigit(str.charAt(i)); i++){
+//            if(ans>Integer.MAX_VALUE/10) {
+//            	if(signal==1) return Integer.MAX_VALUE;
+//                else return Integer.MIN_VALUE;
+//            }
+//        	ans*=10;
+//            if((int)str.charAt(i) -'0'> Integer.MAX_VALUE - ans) {
+//                if(signal==1) return Integer.MAX_VALUE;
+//                else return Integer.MIN_VALUE;
+//            }
+//            ans+=str.charAt(i) - '0';
+//        }
+//        return ans*signal;
+//    }
 	public static int myAtoi(String str) {
-		if(str.length()==0) return 0;
-        int len= str.length();
-        int i=0;
-        int ans=0, signal=1;
-        while(i<len&&str.charAt(i)==' ') ++i;
-        if(i>=len) return 0;
-        if(str.charAt(i) == '-' ||str.charAt(i)== '+') {
-            if(str.charAt(i) == '-'){
-                signal=-1;
-                i++;
-            }else i++;
-        }
-        if(i>=len || !Character.isDigit(str.charAt(i))) return 0;
-        for(; i<str.length() && Character.isDigit(str.charAt(i)); i++){
-            if(ans>Integer.MAX_VALUE/10) {
-            	if(signal==1) return Integer.MAX_VALUE;
-                else return Integer.MIN_VALUE;
-            }
-        	ans*=10;
-            if((int)str.charAt(i) -'0'> Integer.MAX_VALUE - ans) {
-                if(signal==1) return Integer.MAX_VALUE;
-                else return Integer.MIN_VALUE;
-            }
-            ans+=str.charAt(i) - '0';
-        }
-        return ans*signal;
-    }
+		if(str.length()==0) return 0;//特殊输入
+		int ans = 0, i=0;//i为遍历指针
+		int signal = 1;
+		//空格处理
+		while(i<str.length() && str.charAt(i)==' ') i++;
+		if(i>=str.length()) return 0;
+		if(str.charAt(i)=='-' || str.charAt(i)=='+'){
+			if(str.charAt(i)=='-') signal=-1;
+			i++;
+		}
+		if(i>=str.length() || !Character.isDigit(str.charAt(i))) return 0;
+		if(!Character.isDigit(str.charAt(i))) return 0;
+		for(;i<str.length() && Character.isDigit(str.charAt(i)); i++){
+			if(ans>Integer.MAX_VALUE/10){
+				if(signal==1) return Integer.MAX_VALUE;
+				else return Integer.MIN_VALUE;
+			}
+			ans *= 10;
+			if(ans>Integer.MAX_VALUE-(str.charAt(i)-'0')){
+				if(signal==1) return Integer.MAX_VALUE;
+				else return Integer.MIN_VALUE;
+			}
+			ans+= str.charAt(i)-'0';
+		}
+		return ans * signal;
+	}
+
 	public static void main(String[] args) {
-		System.out.println(myAtoi(" "));
-//		System.out.println(Integer.MIN_VALUE);
+		System.out.println(myAtoi("-2147483648"));
+		System.out.println(Integer.MIN_VALUE);
+		System.out.println(Integer.MAX_VALUE);
 	}
 }
 

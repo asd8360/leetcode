@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 public class S017 {
-	private static String[] map = new String[] {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+	private static String[] map = new String[] {"","","abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
 
 	public List<String> letterCombinations(String digits) {
 		//回溯输出
@@ -18,7 +18,7 @@ public class S017 {
     		list.add(s);
     		return;
     	}
-    	for(char c : map[digits.charAt(s.length())- '2'].toCharArray()){
+    	for(char c : map[digits.charAt(s.length()) - '0'].toCharArray()){
     		combine(list, digits, s+c);
     	}
     }

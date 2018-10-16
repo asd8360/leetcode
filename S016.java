@@ -1,5 +1,7 @@
 package leetcode;
 
+import java.util.Arrays;
+
 public class S016 {
 	public static void main(String[] args) {
 		
